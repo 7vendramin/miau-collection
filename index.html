@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miau Collection — Acessórios para gatos</title>
+<meta name="description" content="Miau Collection: acessórios para gatos com estilo. Conforto, charme e personalidade. Barra da Tijuca, Rio de Janeiro. Peça pelo WhatsApp.">
+<link rel="icon" href="img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,800&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --branco: #fffdfb;
+    --blush: #f5d3c9;        /* rosa da orelhinha do logo */
+    --blush-claro: #fbe8e2;
+    --rose: #9c5e43;         /* rose gold do logo (escurecido p/ contraste) */
+    --rose-escuro: #7d4733;
+    --rose-brilho: #c98d6e;
+    --cacau: #3a2620;
+    --cacau-2: #4a332b;
+    --tinta: #3a2620;
+    --tinta-suave: #6e564c;
+    --linha: #ecd8cf;
+    --salvia: #dfe9dd;
+    --ceu: #dbe9ef;
+    --whats: #17733e;
+    --whats-escuro: #115c31;
+    --raio: 24px;
+    --sombra: 0 18px 40px -22px rgba(80, 40, 25, .45);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0; background: var(--branco); color: var(--tinta);
+    font-family: "Jost", system-ui, sans-serif; font-size: 17px; line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--rose-escuro); outline-offset: 3px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.05; margin: 0; font-weight: 300; letter-spacing: -.01em; }
+  h1 strong, h2 strong, h3 strong { font-weight: 800; }
+  .titulo { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+  .titulo strong { color: var(--rose-escuro); }
+  .sub { color: var(--tinta-suave); max-width: 54ch; }
+  .pata { display: inline-block; width: 1em; height: 1em; vertical-align: -.12em; }
+
+  /* ===== Botões ===== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: 999px; padding: 13px 24px; font-weight: 600; font-size: .98rem;
+    border: 2px solid transparent; text-decoration: none; line-height: 1.2; text-align: center;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-cacau { background: var(--cacau); color: var(--branco); }
+  .btn-cacau:hover { background: var(--cacau-2); }
+  .btn-rose { background: var(--rose); color: #fff; }
+  .btn-rose:hover { background: var(--rose-escuro); }
+  .btn-contorno { border-color: var(--cacau); color: var(--cacau); background: transparent; }
+  .btn-contorno:hover { background: rgba(58, 38, 32, .06); }
+  .btn-whats { background: var(--whats); color: #fff; }
+  .btn-whats:hover { background: var(--whats-escuro); }
+  .btn-whats[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+
+  /* ===== Topo ===== */
+  header.topo { position: sticky; top: 0; z-index: 30; background: var(--cacau); color: var(--branco); }
+  .topo .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 20px; }
+  .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .selo { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px var(--rose-brilho); flex: none; }
+  .selo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
+  .marca b { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.4rem; display: block; line-height: 1; }
+  .marca small { font-size: .7rem; letter-spacing: .26em; color: var(--blush); }
+  nav.menu { display: flex; gap: 28px; }
+  nav.menu a { text-decoration: none; font-weight: 500; font-size: .95rem; opacity: .9; }
+  nav.menu a:hover { opacity: 1; color: var(--blush); }
+  .btn-pedido {
+    display: inline-flex; align-items: center; gap: 10px; background: var(--blush); color: var(--cacau);
+    border: 0; border-radius: 999px; padding: 10px 12px 10px 18px; font-weight: 600; font-size: .95rem;
+  }
+  .contador {
+    min-width: 26px; height: 26px; border-radius: 999px; background: var(--cacau); color: var(--branco);
+    font-size: .82rem; display: inline-grid; place-items: center; padding: 0 7px;
+  }
+  .contador.pulo { animation: pulo .4s ease; }
+  @keyframes pulo { 50% { transform: scale(1.3); } }
+
+  /* ===== Hero ===== */
+  .hero { background: var(--blush); position: relative; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; min-height: 600px; padding-top: 56px; padding-bottom: 72px; }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.2rem); color: var(--cacau); }
+  .hero h1 strong { color: var(--rose-escuro); }
+  .hero .sub { font-size: 1.12rem; margin: 22px 0 30px; color: var(--cacau-2); }
+  .hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-local { margin-top: 28px; display: flex; align-items: center; gap: 8px; font-weight: 500; color: var(--cacau-2); font-size: .95rem; }
+  .hero-local svg { color: var(--rose); }
+
+  .palco { position: relative; width: min(420px, 100%); justify-self: center; }
+  .arco {
+    margin: 0; aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; overflow: hidden;
+    box-shadow: 0 0 0 10px var(--branco), var(--sombra);
+  }
+  .arco img { width: 100%; height: 100%; object-fit: cover; }
+  .palco .medalha {
+    position: absolute; left: -36px; bottom: 48px; width: 128px; height: 128px; border-radius: 50%; overflow: hidden;
+    box-shadow: 0 0 0 6px var(--branco), var(--sombra);
+  }
+  .palco .medalha img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); }
+  .etiqueta {
+    position: absolute; right: -20px; top: 56px; display: flex; align-items: center; gap: 8px;
+    background: var(--branco); color: var(--cacau); border-radius: 999px; padding: 10px 16px;
+    font-weight: 600; font-size: .9rem; box-shadow: var(--sombra);
+  }
+  .etiqueta svg { width: 18px; height: 18px; color: var(--rose); }
+
+  /* Orelhinhas: divisor de seção em formato de orelhas de gato */
+  .orelhas { position: relative; }
+  .orelhas::before {
+    content: ""; position: absolute; left: 50%; top: -58px; width: 300px; height: 60px; translate: -50% 0;
+    background: inherit;
+    clip-path: polygon(0 100%, 18% 0, 36% 100%, 64% 100%, 82% 0, 100% 100%);
+  }
+
+  /* ===== Faixa ===== */
+  .faixa { background: var(--rose); color: var(--branco); overflow: hidden; padding: 12px 0; }
+  .faixa-trilho { display: flex; width: max-content; animation: trilho 32s linear infinite; }
+  .faixa span { font-family: "Fraunces", serif; font-size: 1.25rem; font-weight: 300; white-space: nowrap; padding-right: 28px; display: inline-flex; align-items: center; gap: 28px; }
+  .faixa span b { font-weight: 800; }
+  .faixa svg { width: 22px; height: 22px; color: var(--blush); }
+  @keyframes trilho { to { transform: translateX(-50%); } }
+
+  /* ===== Sobre ===== */
+  section.bloco { padding: 96px 0; }
+  .sobre .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .sobre p { margin: 20px 0 0; }
+  .valores { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+  .valores li { display: flex; gap: 14px; align-items: flex-start; }
+  .valores .ic { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--blush-claro); color: var(--rose); }
+  .valores .ic svg { width: 22px; height: 22px; }
+  .valores b { display: block; font-weight: 600; }
+  .valores span { color: var(--tinta-suave); font-size: .95rem; }
+  .mosaico { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mosaico figure { margin: 0; border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); }
+  .mosaico img { width: 100%; height: 100%; object-fit: cover; }
+  .mosaico figure:first-child { grid-row: span 2; }
+  .mosaico .cor { background: var(--cacau); color: var(--blush); display: grid; place-items: center; padding: 24px; text-align: center; border-radius: var(--raio); }
+  .mosaico .cor p { margin: 0; font-family: "Fraunces", serif; font-size: 1.35rem; line-height: 1.2; color: var(--branco); }
+  .mosaico .cor svg { width: 34px; height: 34px; margin: 0 auto 10px; }
+
+  /* ===== Coleção ===== */
+  .colecao { background: var(--blush-claro); }
+  .cab { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
+  .cab .sub { margin: 12px 0 0; }
+  .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .card {
+    background: var(--branco); border-radius: var(--raio); overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: var(--sombra); transition: transform .2s ease;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card .foto { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--blush-claro); }
+  .card .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .card:hover .foto img { transform: scale(1.04); }
+  .selo-qtd {
+    position: absolute; top: 14px; right: 14px; background: var(--cacau); color: var(--branco);
+    border-radius: 999px; padding: 5px 12px; font-size: .82rem; font-weight: 600;
+  }
+  .selo-qtd[hidden] { display: none; }
+  .card .corpo { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .card .tag { font-size: .78rem; font-weight: 600; color: var(--rose); letter-spacing: .08em; text-transform: uppercase; }
+  .card h3 { font-size: 1.7rem; font-weight: 600; }
+  .card p { margin: 0; color: var(--tinta-suave); font-size: .97rem; flex: 1; }
+  .preco { font-size: .9rem; color: var(--cacau-2); font-weight: 500; padding: 8px 12px; background: var(--blush-claro); border-radius: 10px; align-self: flex-start; }
+  .acoes { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 6px; }
+  .acoes .btn { padding: 12px 10px; font-size: .92rem; }
+  .btn-quero { border-color: var(--whats); color: var(--whats-escuro); background: transparent; }
+  .btn-quero:hover { background: #e9f6ee; }
+  .passo { display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--cacau); border-radius: 999px; }
+  .passo button { width: 44px; height: 44px; border: 0; background: none; font-size: 1.25rem; color: var(--cacau); border-radius: 999px; }
+  .passo button:hover { background: rgba(58,38,32,.08); }
+  .passo output { font-weight: 600; }
+  .fundo-blush { background: var(--blush); } .fundo-salvia { background: var(--salvia); } .fundo-ceu { background: var(--ceu); }
+
+  /* ===== Como pedir ===== */
+  .como { background: var(--cacau); color: var(--branco); }
+  .como .titulo strong { color: var(--blush); }
+  .como .sub { color: #dcc8bf; margin: 14px auto 0; text-align: center; }
+  .como .centro { text-align: center; }
+  .passos { list-style: none; padding: 0; margin: 52px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: p; }
+  .passos li { counter-increment: p; background: var(--cacau-2); border-radius: var(--raio); padding: 30px 26px; position: relative; }
+  .passos li::before {
+    content: counter(p); font-family: "Fraunces", serif; font-weight: 800; font-size: 3.4rem; line-height: 1;
+    color: var(--rose-brilho); display: block; margin-bottom: 14px;
+  }
+  .passos b { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.35rem; display: block; margin-bottom: 6px; }
+  .passos span { color: #dcc8bf; font-size: .97rem; }
+  .nota {
+    margin: 30px auto 0; max-width: 760px; display: flex; gap: 14px; align-items: flex-start;
+    background: rgba(245, 211, 201, .12); border: 1px solid rgba(245, 211, 201, .3); border-radius: 18px; padding: 18px 20px; color: #f1e3dc; font-size: .95rem;
+  }
+  .nota svg { flex: none; width: 24px; height: 24px; color: var(--blush); margin-top: 1px; }
+
+  /* ===== Dicas ===== */
+  .dicas-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 44px; }
+  .dica { border-radius: var(--raio); padding: 34px 32px; }
+  .dica-cab { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+  .dica-cab img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 0 0 4px var(--branco); }
+  .dica h3 { font-size: 1.9rem; }
+  .dica ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .dica li { display: flex; gap: 12px; align-items: flex-start; }
+  .dica li svg { flex: none; width: 22px; height: 22px; color: var(--rose); margin-top: 2px; }
+  .dica .fecho { margin: 22px 0 0; font-family: "Fraunces", serif; font-size: 1.1rem; color: var(--rose-escuro); }
+  .dicas-mais { text-align: center; margin-top: 34px; }
+
+  /* ===== Onde estamos ===== */
+  .local { background: var(--blush); }
+  .local .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .local .sub { margin: 16px 0 28px; color: var(--cacau-2); }
+  .cartao {
+    background: var(--branco); border-radius: var(--raio); padding: 30px; box-shadow: var(--sombra);
+    display: grid; gap: 20px;
+  }
+  .cartao div { display: flex; gap: 16px; align-items: flex-start; }
+  .cartao .ic { flex: none; width: 46px; height: 46px; border-radius: 50%; background: var(--blush-claro); color: var(--rose); display: grid; place-items: center; }
+  .cartao .ic svg { width: 22px; height: 22px; }
+  .cartao small { display: block; font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--rose); }
+  .cartao p { margin: 2px 0 0; font-size: 1.05rem; font-weight: 500; }
+  .cartao a { color: var(--cacau); }
+
+  /* ===== Rodapé ===== */
+  footer { background: var(--cacau); color: #dcc8bf; padding: 64px 0 120px; }
+  footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
+  footer .marca b { color: var(--branco); }
+  footer p { margin: 16px 0 0; font-size: .95rem; max-width: 34ch; }
+  footer h3 { font-family: "Fraunces", serif; font-weight: 600; color: var(--branco); font-size: 1.2rem; margin: 0 0 14px; }
+  footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  footer a { color: #f1e3dc; text-decoration: none; }
+  footer a:hover { color: var(--blush); text-decoration: underline; }
+  .copy { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; font-size: .85rem; }
+
+  /* ===== Painel do pedido ===== */
+  .veu { position: fixed; inset: 0; background: rgba(40, 22, 16, .5); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 40; }
+  .veu.aberto { opacity: 1; pointer-events: auto; }
+  aside.pedido {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(440px, 100%);
+    background: var(--branco); z-index: 50; display: flex; flex-direction: column;
+    transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility 0s .3s;
+  }
+  aside.pedido.aberto { transform: none; visibility: visible; transition: transform .3s ease; box-shadow: -14px 0 40px rgba(0,0,0,.18); }
+  .pedido-topo { display: flex; justify-content: space-between; align-items: center; padding: 20px 22px; background: var(--blush); }
+  .pedido-topo h2 { font-size: 2rem; }
+  .pedido-topo h2 strong { color: var(--rose-escuro); }
+  .fechar { background: var(--branco); border: 0; border-radius: 50%; width: 42px; height: 42px; font-size: 1.3rem; color: var(--cacau); }
+  .pedido-lista { list-style: none; margin: 0; padding: 6px 22px; overflow-y: auto; flex: 1; }
+  .item { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--linha); }
+  .item img { width: 64px; height: 64px; object-fit: cover; border-radius: 16px; }
+  .item-nome { font-weight: 600; font-size: .98rem; line-height: 1.3; }
+  .remover { background: none; border: 0; padding: 0; color: var(--rose-escuro); font-size: .85rem; text-decoration: underline; margin-top: 4px; }
+  .item .passo { border-width: 1px; border-color: var(--linha); }
+  .item .passo button { width: 36px; height: 36px; font-size: 1.1rem; }
+  .item .passo output { min-width: 22px; text-align: center; }
+  .vazio { text-align: center; color: var(--tinta-suave); padding: 56px 12px; }
+  .vazio svg { width: 54px; height: 54px; color: var(--blush); margin: 0 auto 12px; }
+  .vazio p { margin: 0 0 6px; }
+  .pedido-rodape { padding: 18px 22px 22px; border-top: 1px solid var(--linha); display: grid; gap: 12px; background: var(--blush-claro); }
+  .aviso { font-size: .86rem; color: var(--tinta-suave); margin: 0; }
+  .aviso strong { color: var(--tinta); }
+  .pedido-rodape .btn-whats { width: 100%; padding: 15px; font-size: 1.02rem; }
+  .limpar { background: none; border: 0; color: var(--tinta-suave); font-size: .86rem; text-decoration: underline; justify-self: center; }
+
+  .barra-pedido {
+    position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 35; max-width: 520px; margin: 0 auto;
+    display: none; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--cacau); color: var(--branco); border: 0; border-radius: 999px;
+    padding: 10px 10px 10px 22px; box-shadow: 0 14px 34px rgba(0,0,0,.3); font-weight: 600;
+  }
+  .barra-pedido.visivel { display: flex; }
+  .barra-pedido span:last-child { background: var(--blush); color: var(--cacau); border-radius: 999px; padding: 9px 16px; font-size: .92rem; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%) translateY(20px);
+    background: var(--cacau); color: var(--branco); padding: 11px 20px; border-radius: 999px; font-size: .93rem;
+    opacity: 0; transition: .25s; z-index: 60; pointer-events: none; max-width: calc(100% - 32px); text-align: center;
+  }
+  .toast.ver { opacity: 1; transform: translateX(-50%); }
+
+  /* Revelar ao rolar */
+  .revela { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .revela.visto { opacity: 1; transform: none; }
+
+  /* ===== Responsivo ===== */
+  @media (max-width: 960px) {
+    nav.menu { display: none; }
+    .hero .wrap, .sobre .wrap, .local .wrap { grid-template-columns: 1fr; }
+    .hero .wrap { min-height: 0; padding-top: 36px; gap: 28px; }
+    .palco { width: min(360px, 84%); }
+    .palco .medalha { width: 96px; height: 96px; left: -18px; bottom: 28px; }
+    .etiqueta { right: -14px; top: 28px; font-size: .82rem; padding: 8px 12px; }
+    .grade { grid-template-columns: repeat(2, 1fr); }
+    .passos { grid-template-columns: 1fr; }
+    .dicas-grade { grid-template-columns: 1fr; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+    footer .wrap > :first-child { grid-column: 1 / -1; }
+    section.bloco { padding: 72px 0; }
+  }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    .grade { grid-template-columns: 1fr; }
+    .btn-pedido .rotulo { display: none; }
+    .btn-pedido { padding: 8px 8px 8px 14px; }
+    .marca b { font-size: 1.2rem; }
+    .hero-acoes .btn { flex: 1 1 100%; }
+    .dica { padding: 26px 22px; }
+    .faixa span { font-size: 1.2rem; }
+    .orelhas::before { width: 200px; height: 42px; top: -40px; }
+    footer .wrap { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .faixa-trilho, .flutua, .contador.pulo { animation: none; }
+    .revela { opacity: 1; transform: none; transition: none; }
+    aside.pedido, .veu, .toast, .card, .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-pata" viewBox="0 0 24 24"><path fill="currentColor" d="M12 13.2c-2.6 0-5.6 2.9-5.6 5.4 0 1.5 1.1 2.2 2.4 2.2 1.2 0 2-.6 3.2-.6s2 .6 3.2.6c1.3 0 2.4-.7 2.4-2.2 0-2.5-3-5.4-5.6-5.4Z"/><ellipse fill="currentColor" cx="5.2" cy="10.6" rx="2.1" ry="2.6" transform="rotate(-18 5.2 10.6)"/><ellipse fill="currentColor" cx="18.8" cy="10.6" rx="2.1" ry="2.6" transform="rotate(18 18.8 10.6)"/><ellipse fill="currentColor" cx="9.1" cy="5.8" rx="2.2" ry="2.8" transform="rotate(-6 9.1 5.8)"/><ellipse fill="currentColor" cx="14.9" cy="5.8" rx="2.2" ry="2.8" transform="rotate(6 14.9 5.8)"/></symbol>
+    <symbol id="i-whats" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.2-.2-.5-.3Z"/></symbol>
+    <symbol id="i-local" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-coracao" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10Z"/></symbol>
+    <symbol id="i-laco" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 12 4 7v10l8-5Zm0 0 8-5v10l-8-5Zm0 0-2 8m2-8 2 8"/></symbol>
+    <symbol id="i-brilho" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7Zm7 11c.3 2 1 2.7 3 3-2 .3-2.7 1-3 3-.3-2-1-2.7-3-3 2-.3 2.7-1 3-3Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m8 12.3 2.6 2.6L16.2 9"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 11v6M12 7.5v.1"/></symbol>
+    <symbol id="i-sacola" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 8h14l-1 12H6L5 8Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M9 8a3 3 0 0 1 6 0"/></symbol>
+  </defs>
+</svg>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Miau Collection — início">
+      <span class="selo"><img src="img/logo.jpg" alt=""></span>
+      <span><b>Miau</b><small>COLLECTION</small></span>
+    </a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#sobre">A Miau</a>
+      <a href="#colecao">Coleção</a>
+      <a href="#como-pedir">Como pedir</a>
+      <a href="#dicas">Dicas</a>
+      <a href="#onde">Onde estamos</a>
+    </nav>
+    <button class="btn-pedido" type="button" data-abrir-pedido aria-controls="pedido">
+      <span class="rotulo">Seu pedido</span>
+      <span class="contador" data-contador aria-label="itens no pedido">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Para quem ama <strong>mimar</strong> o seu <strong>miAU</strong>.</h1>
+        <p class="sub">Acessórios para gatos com estilo, pensados para o conforto deles e para combinar com a sua casa. Monte seu pedido aqui e fale com a gente pelo WhatsApp.</p>
+        <div class="hero-acoes">
+          <a class="btn btn-cacau" href="#colecao">Ver a coleção</a>
+          <a class="btn btn-contorno" href="#" data-whats-geral><svg><use href="#i-whats"/></svg>Falar no WhatsApp</a>
+        </div>
+        <div class="hero-local"><svg class="pata" width="20" height="20"><use href="#i-local"/></svg>Barra da Tijuca, Rio de Janeiro — RJ</div>
+      </div>
+      <div class="palco">
+        <figure class="arco"><img src="img/arranhador.jpg" alt="Gato usando o arranhador de parede Miau Collection" fetchpriority="high"></figure>
+        <div class="medalha" aria-hidden="true"><img src="img/logo.jpg" alt=""></div>
+        <div class="etiqueta" aria-hidden="true"><svg><use href="#i-pata"/></svg>Arranhador de parede</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faixa -->
+  <div class="faixa" aria-hidden="true">
+    <div class="faixa-trilho">
+      <span><b>Conforto</b><svg><use href="#i-pata"/></svg>charme<svg><use href="#i-pata"/></svg><b>personalidade</b><svg><use href="#i-pata"/></svg>feita para quem ama mimar o seu miAU<svg><use href="#i-pata"/></svg></span>
+      <span><b>Conforto</b><svg><use href="#i-pata"/></svg>charme<svg><use href="#i-pata"/></svg><b>personalidade</b><svg><use href="#i-pata"/></svg>feita para quem ama mimar o seu miAU<svg><use href="#i-pata"/></svg></span>
+    </div>
+  </div>
+
+  <!-- Sobre -->
+  <section class="bloco sobre" id="sobre">
+    <div class="wrap">
+      <div class="revela">
+        <h2 class="titulo">Uma marca feita <strong>por quem ama gatos</strong></h2>
+        <p class="sub">A Miau Collection nasceu na Barra da Tijuca para reunir acessórios que deixam a rotina do seu gato mais gostosa e a sua casa mais bonita. Cada peça é escolhida pensando em três coisas:</p>
+        <ul class="valores">
+          <li><span class="ic"><svg><use href="#i-coracao"/></svg></span><span><b>Conforto</b><span>Produtos que respeitam o jeito e o bem-estar do gato.</span></span></li>
+          <li><span class="ic"><svg><use href="#i-laco"/></svg></span><span><b>Charme</b><span>Peças bonitas, que combinam com a decoração.</span></span></li>
+          <li><span class="ic"><svg><use href="#i-brilho"/></svg></span><span><b>Personalidade</b><span>Para gatos (e tutores) que têm estilo próprio.</span></span></li>
+        </ul>
+      </div>
+      <div class="mosaico revela">
+        <figure><img src="img/tunel.jpg" alt="Gatinho brincando no túnel colorido" loading="lazy"></figure>
+        <figure><img src="img/comedouros.jpg" alt="Comedouros elevados em formato de gatinho" loading="lazy"></figure>
+        <div class="cor"><div><svg><use href="#i-pata"/></svg><p>Feita para quem ama mimar o seu miAU</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coleção -->
+  <section class="bloco colecao orelhas" id="colecao">
+    <div class="wrap">
+      <div class="cab revela">
+        <div>
+          <h2 class="titulo">Nossa <strong>coleção</strong></h2>
+          <p class="sub">Adicione os produtos ao seu pedido e envie tudo de uma vez pelo WhatsApp, ou toque em “Quero esse” para perguntar sobre um item.</p>
+        </div>
+        <button class="btn btn-rose" type="button" data-abrir-pedido><svg><use href="#i-sacola"/></svg>Ver meu pedido</button>
+      </div>
+      <div class="grade" data-grade></div>
+    </div>
+  </section>
+
+  <!-- Como pedir -->
+  <section class="bloco como orelhas" id="como-pedir">
+    <div class="wrap">
+      <div class="centro revela">
+        <h2 class="titulo">Pedir é <strong>simples assim</strong></h2>
+        <p class="sub">Sem cadastro e sem pagamento pelo site. Tudo é combinado direto com a loja.</p>
+      </div>
+      <ol class="passos">
+        <li class="revela"><b>Monte seu pedido</b><span>Toque em “Adicionar ao pedido” e ajuste as quantidades. Seu pedido fica salvo mesmo se você sair da página.</span></li>
+        <li class="revela"><b>Envie pelo WhatsApp</b><span>O WhatsApp abre com a mensagem pronta, listando todos os itens. É só tocar em “Enviar”.</span></li>
+        <li class="revela"><b>A loja confirma</b><span>Respondemos na conversa com valores, disponibilidade e opções de entrega.</span></li>
+      </ol>
+      <p class="nota revela"><svg><use href="#i-info"/></svg><span>Enviar a mensagem é uma <strong>solicitação</strong>: o pedido só é confirmado pela loja no WhatsApp. O site apenas abre a conversa com o texto preenchido: você precisa tocar em “Enviar” no WhatsApp.</span></p>
+    </div>
+  </section>
+
+  <!-- Dicas -->
+  <section class="bloco dicas" id="dicas">
+    <div class="wrap">
+      <div class="revela">
+        <h2 class="titulo">Dicas <strong>Miau</strong></h2>
+        <p class="sub">Um pouco do que a gente compartilha no Instagram sobre cuidar bem do seu gato.</p>
+      </div>
+      <div class="dicas-grade">
+        <article class="dica fundo-blush revela">
+          <div class="dica-cab"><img src="img/carinho.jpg" alt="Gato recebendo carinho da tutora" loading="lazy"><h3>Os benefícios do <strong>carinho</strong></h3></div>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Reduz o estresse</li>
+            <li><svg><use href="#i-check"/></svg>Fortalece o vínculo entre vocês</li>
+            <li><svg><use href="#i-check"/></svg>Melhora o bem-estar</li>
+            <li><svg><use href="#i-check"/></svg>Deixa o dia a dia mais leve</li>
+          </ul>
+          <p class="fecho">Carinho hoje, mais saúde sempre. ♡</p>
+        </article>
+        <article class="dica fundo-salvia revela">
+          <div class="dica-cab"><img src="img/alimentacao.jpg" alt="Gato lambendo os lábios diante do pote de ração" loading="lazy"><h3>Alimentação <strong>saudável</strong></h3></div>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Escolha uma ração de qualidade</li>
+            <li><svg><use href="#i-check"/></svg>Mantenha água fresca sempre disponível</li>
+            <li><svg><use href="#i-check"/></svg>Varie a alimentação</li>
+            <li><svg><use href="#i-check"/></svg>Respeite a fase da vida do seu gato</li>
+            <li><svg><use href="#i-check"/></svg>Evite alimentos proibidos</li>
+          </ul>
+          <p class="fecho">Mais qualidade de vida para o seu miAU.</p>
+        </article>
+      </div>
+      <div class="dicas-mais revela">
+        <a class="btn btn-contorno" href="https://www.instagram.com/miaucollectionbr/" target="_blank" rel="noopener"><svg><use href="#i-insta"/></svg>Seguir @miaucollectionbr</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Onde estamos -->
+  <section class="bloco local orelhas" id="onde">
+    <div class="wrap">
+      <div class="revela">
+        <h2 class="titulo">Estamos na <strong>Barra da Tijuca</strong></h2>
+        <p class="sub">Atendemos pelo WhatsApp: tire dúvidas, peça indicações e combine a entrega direto com a gente.</p>
+        <a class="btn btn-whats" href="#" data-whats-geral><svg><use href="#i-whats"/></svg>Conversar no WhatsApp</a>
+      </div>
+      <div class="cartao revela">
+        <div><span class="ic"><svg><use href="#i-local"/></svg></span><span><small>Localização</small><p>Barra da Tijuca, Rio de Janeiro — RJ</p></span></div>
+        <div><span class="ic"><svg><use href="#i-whats"/></svg></span><span><small>WhatsApp</small><p data-whats-numero>Em breve</p></span></div>
+        <div><span class="ic"><svg><use href="#i-insta"/></svg></span><span><small>Instagram</small><p><a href="https://www.instagram.com/miaucollectionbr/" target="_blank" rel="noopener">@miaucollectionbr</a></p></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="marca" href="#inicio"><span class="selo"><img src="img/logo.jpg" alt=""></span><span><b>Miau</b><small>COLLECTION</small></span></a>
+      <p>Acessórios para gatos com estilo. Conforto, charme e personalidade.</p>
+    </div>
+    <div>
+      <h3>Navegue</h3>
+      <ul>
+        <li><a href="#sobre">A Miau</a></li>
+        <li><a href="#colecao">Coleção</a></li>
+        <li><a href="#como-pedir">Como pedir</a></li>
+        <li><a href="#dicas">Dicas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Fale com a gente</h3>
+      <ul>
+        <li><a href="#" data-whats-geral>WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/miaucollectionbr/" target="_blank" rel="noopener">Instagram</a></li>
+        <li>Barra da Tijuca, Rio de Janeiro — RJ</li>
+      </ul>
+    </div>
+    <div class="copy">© <span data-ano></span> Miau Collection. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<button class="barra-pedido" type="button" data-abrir-pedido aria-controls="pedido">
+  <span data-barra-texto>Seu pedido</span>
+  <span>Ver pedido</span>
+</button>
+
+<div class="veu" data-veu></div>
+<aside class="pedido" id="pedido" role="dialog" aria-modal="true" aria-labelledby="pedido-titulo" aria-hidden="true">
+  <div class="pedido-topo">
+    <h2 id="pedido-titulo">Seu <strong>pedido</strong></h2>
+    <button class="fechar" type="button" data-fechar-pedido aria-label="Fechar">×</button>
+  </div>
+  <ul class="pedido-lista" data-lista></ul>
+  <div class="pedido-rodape">
+    <p class="aviso"><strong>Isto é uma solicitação.</strong> O botão abre o WhatsApp com a mensagem pronta, e você precisa tocar em “Enviar” lá. Valores, disponibilidade e entrega são confirmados pela loja na conversa.</p>
+    <button class="btn btn-whats" type="button" data-enviar><svg><use href="#i-whats"/></svg>Enviar pedido pelo WhatsApp</button>
+    <button class="limpar" type="button" data-limpar>Limpar pedido</button>
+  </div>
+</aside>
+
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<script>
+  // ===== Configuração da loja =====
+  // Número com código do país + DDD, só dígitos. Ex.: "5521999998888"
+  const LOJA = {
+    nome: "Miau Collection",
+    whatsapp: "", // [PREENCHER NÚMERO COM DDD]
+  };
+
+  // Para cadastrar preços no futuro, adicione `preco` (em reais) a cada produto.
+  const PRODUTOS = [
+    {
+      id: "arranhador-parede",
+      nome: "Arranhador de parede",
+      plural: "Arranhadores de parede",
+      tag: "Para arranhar",
+      descricao: "Arranhador de sisal para fixar na parede. Ocupa pouco espaço e protege os móveis.",
+      foto: "img/arranhador.jpg",
+      fundo: "fundo-blush",
+    },
+    {
+      id: "tunel-brincar",
+      nome: "Túnel de brincar",
+      plural: "Túneis de brincar",
+      tag: "Para brincar",
+      descricao: "Túnel colorido e dobrável, com bolinha pendurada, para correr, se esconder e brincar.",
+      foto: "img/tunel.jpg",
+      fundo: "fundo-salvia",
+    },
+    {
+      id: "comedouro-elevado",
+      nome: "Comedouro elevado orelhinha",
+      plural: "Comedouros elevados orelhinha",
+      tag: "Para comer bem",
+      descricao: "Comedouro elevado em formato de gatinho, em várias cores. Mais conforto na hora de comer.",
+      foto: "img/comedouros.jpg",
+      fundo: "fundo-ceu",
+    },
+  ];
+
+  const CHAVE = "miau-pedido";
+  const porId = Object.fromEntries(PRODUTOS.map(p => [p.id, p]));
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  // ===== Pedido (persistido em localStorage) =====
+  function carregar() {
+    try {
+      const salvo = JSON.parse(localStorage.getItem(CHAVE) || "{}");
+      const limpo = {};
+      for (const [id, q] of Object.entries(salvo)) {
+        const n = Math.floor(Number(q));
+        if (porId[id] && n > 0) limpo[id] = Math.min(n, 99);
+      }
+      return limpo;
+    } catch { return {}; }
+  }
+  let pedido = carregar();
+
+  function salvar() {
+    try { localStorage.setItem(CHAVE, JSON.stringify(pedido)); } catch {}
+    render();
+  }
+  function definir(id, qtd) {
+    if (qtd <= 0) delete pedido[id];
+    else pedido[id] = Math.min(qtd, 99);
+    salvar();
+  }
+  const totalItens = () => Object.values(pedido).reduce((a, b) => a + b, 0);
+
+  // Sincroniza entre abas abertas
+  window.addEventListener("storage", e => { if (e.key === CHAVE) { pedido = carregar(); render(); } });
+
+  // ===== WhatsApp =====
+  const numero = String(LOJA.whatsapp).replace(/\D/g, "");
+  function linkWhats(texto) {
+    return `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  }
+  function abrirWhats(texto) {
+    if (!numero) { avisar("O número de WhatsApp da loja ainda não foi configurado."); return; }
+    window.open(linkWhats(texto), "_blank", "noopener");
+  }
+  function mensagemPedido() {
+    const linhas = Object.entries(pedido).map(([id, q]) =>
+      `• ${q} × ${q > 1 ? porId[id].plural : porId[id].nome}`);
+    return `Olá! Vim pelo site da ${LOJA.nome} e gostaria de fazer este pedido:\n\n${linhas.join("\n")}\n\nPodem confirmar os valores, a disponibilidade e as opções de entrega?`;
+  }
+  function mensagemProduto(p) {
+    return `Olá! Vim pelo site da ${LOJA.nome} e tenho interesse no produto: ${p.nome}.\n\nPodem confirmar o valor, a disponibilidade e as opções de entrega?`;
+  }
+
+  // ===== Interface =====
+  function el(tag, attrs = {}, ...filhos) {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === "class") n.className = v;
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v);
+    }
+    for (const f of filhos) n.append(f);
+    return n;
+  }
+  function icone(id) {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const u = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    u.setAttribute("href", "#" + id); s.append(u); s.setAttribute("aria-hidden", "true");
+    return s;
+  }
+  function passo(p, q, compacto) {
+    return el("div", { class: "passo", role: "group", "aria-label": `Quantidade de ${p.nome}` },
+      el("button", { type: "button", "aria-label": `Diminuir ${p.nome}`, onclick: () => definir(p.id, q - 1) }, "−"),
+      el("output", {}, compacto ? String(q) : `${q} no pedido`),
+      el("button", { type: "button", "aria-label": `Aumentar ${p.nome}`, onclick: () => definir(p.id, q + 1) }, "+"));
+  }
+
+  function montarProdutos() {
+    const grade = $("[data-grade]");
+    for (const p of PRODUTOS) {
+      const precoTxt = typeof p.preco === "number"
+        ? p.preco.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+        : "Valor sob consulta no WhatsApp";
+      grade.append(el("article", { class: "card revela" },
+        el("div", { class: "foto " + p.fundo },
+          el("img", { src: p.foto, alt: p.nome, loading: "lazy" }),
+          el("span", { class: "selo-qtd", "data-selo": p.id, hidden: "" })),
+        el("div", { class: "corpo" },
+          el("span", { class: "tag" }, p.tag),
+          el("h3", {}, p.nome),
+          el("p", {}, p.descricao),
+          el("span", { class: "preco" }, precoTxt),
+          el("div", { class: "acoes" },
+            el("div", { "data-acao": p.id }),
+            el("button", { class: "btn btn-quero", type: "button", onclick: () => abrirWhats(mensagemProduto(p)) }, icone("i-whats"), "Quero esse"))
+        )
+      ));
+    }
+  }
+
+  function adicionar(p) {
+    definir(p.id, (pedido[p.id] || 0) + 1);
+    avisar(`${p.nome} adicionado ao pedido`);
+    $$("[data-contador]").forEach(c => { c.classList.remove("pulo"); void c.offsetWidth; c.classList.add("pulo"); });
+  }
+
+  function render() {
+    const total = totalItens();
+    $$("[data-contador]").forEach(c => c.textContent = total);
+    $("[data-barra-texto]").textContent = `${total} ${total === 1 ? "item" : "itens"} no pedido`;
+    $(".barra-pedido").classList.toggle("visivel", total > 0);
+
+    for (const p of PRODUTOS) {
+      const q = pedido[p.id];
+      const selo = $(`[data-selo="${p.id}"]`);
+      selo.hidden = !q; selo.textContent = q ? `${q} no pedido` : "";
+      const slot = $(`[data-acao="${p.id}"]`);
+      const tinhaFoco = slot.contains(document.activeElement) ? document.activeElement.getAttribute("aria-label") : null;
+      slot.replaceChildren(q
+        ? passo(p, q, true)
+        : el("button", { class: "btn btn-rose", type: "button", style: "width:100%", onclick: () => adicionar(p) }, "Adicionar ao pedido"));
+      if (tinhaFoco) {
+        const alvo = slot.querySelector(`[aria-label="${tinhaFoco}"]`) || slot.querySelector("button");
+        alvo && alvo.focus();
+      }
+    }
+
+    const lista = $("[data-lista]");
+    lista.replaceChildren();
+    const ids = Object.keys(pedido);
+    if (!ids.length) {
+      lista.append(el("li", { class: "vazio" }, icone("i-pata"),
+        el("p", {}, "Seu pedido está vazio."),
+        el("p", {}, "Toque em “Adicionar ao pedido” nos produtos.")));
+    }
+    for (const id of ids) {
+      const p = porId[id], q = pedido[id];
+      lista.append(el("li", { class: "item" },
+        el("img", { src: p.foto, alt: "" }),
+        el("div", {},
+          el("div", { class: "item-nome" }, p.nome),
+          el("button", { class: "remover", type: "button", onclick: () => definir(id, 0) }, "Remover")),
+        passo(p, q, true)));
+    }
+    $("[data-enviar]").disabled = !ids.length;
+    $("[data-limpar]").hidden = !ids.length;
+  }
+
+  // Painel
+  const painel = $("#pedido"), veu = $("[data-veu]");
+  let ultimoFoco = null;
+  function abrirPainel() {
+    ultimoFoco = document.activeElement;
+    painel.classList.add("aberto"); veu.classList.add("aberto");
+    painel.setAttribute("aria-hidden", "false");
+    $("[data-fechar-pedido]").focus();
+  }
+  function fecharPainel() {
+    painel.classList.remove("aberto"); veu.classList.remove("aberto");
+    painel.setAttribute("aria-hidden", "true");
+    if (ultimoFoco) ultimoFoco.focus();
+  }
+  $$("[data-abrir-pedido]").forEach(b => b.addEventListener("click", abrirPainel));
+  $("[data-fechar-pedido]").addEventListener("click", fecharPainel);
+  veu.addEventListener("click", fecharPainel);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && painel.classList.contains("aberto")) fecharPainel(); });
+
+  $("[data-enviar]").addEventListener("click", () => { if (totalItens()) abrirWhats(mensagemPedido()); });
+  $("[data-limpar]").addEventListener("click", () => { pedido = {}; salvar(); });
+
+  $$("[data-whats-geral]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    abrirWhats(`Olá! Vim pelo site da ${LOJA.nome} e gostaria de mais informações.`);
+  }));
+  $("[data-whats-numero]").textContent = numero
+    ? numero.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, "($1) $2-$3")
+    : "Em breve";
+
+  let timer;
+  function avisar(txt) {
+    const t = $("[data-toast]");
+    t.textContent = txt; t.classList.add("ver");
+    clearTimeout(timer); timer = setTimeout(() => t.classList.remove("ver"), 2200);
+  }
+
+  $("[data-ano]").textContent = new Date().getFullYear();
+  montarProdutos();
+  render();
+
+  // Revelar ao rolar
+  if ("IntersectionObserver" in window) {
+    const obs = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("visto"); obs.unobserve(e.target); }
+    }), { threshold: .12 });
+    $$(".revela").forEach(n => obs.observe(n));
+  } else {
+    $$(".revela").forEach(n => n.classList.add("visto"));
+  }
+</script>
+</body>
+</html>
